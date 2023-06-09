@@ -23,13 +23,13 @@ label.pack()
 def hermie_resize(e):
     global revived_hermie
     revived_hermie = Image.open("Hermie_Crawling.png").convert("RGBA")
-    resized = revived_hermie.resize((e.width, e.height),     Image.ANTIALIAS)
-
-    HERMSTER2 = ImageTk.PhotoImage(resized)
+    revived_hermie = revived_hermie.resize((e.width, e)
     label = tk.Label(frame, image=HERMSTER2)
     label.pack()
 
 window.bind("<Configure>", hermie_resize)
 
-#always leave at the bottom
+#always leave at the bottome.height))
+
+    HERMSTER2 = ImageTk.PhotoImage(revived_hermie)
 tk.mainloop()
