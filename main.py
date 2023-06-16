@@ -2,34 +2,33 @@ import tkinter as tk
 from PIL import ImageTk, Image
 
 window = tk.Tk()
-window.title("Hello world")
-window.geometry("300x300")
+window.title("Unslauy")
+window.geometry("600x600")
 
-hello = tk.Label(text="Hello world!")
-hello.pack()
-button = tk.Button(text="Click me!")
-button.pack()
+class Instant_Frame_Probably(tk.Frame):
+    def __init__(self, master):
+        tk.Frame.__init__(self, master)
 
-frame = tk.Frame(window, width = 100, height = 100)
-frame.pack()
-frame.place(anchor = "center", relx = 0.5, rely = 0.5)
-hermie = Image.open("Hermie_Crawling.png").convert("RGBA")
-cropped_hermie = hermie.crop([0, 0, 32, 32])
-revived_hermie = ImageTk.PhotoImage(cropped_hermie)
+        self.image = Image.open("Hermie_Crawling.png").convert("RGBA")
+        self.revived_hermie = self.image.copy()
 
-label = tk.Label(frame, image = revived_hermie)
-label.pack()
+        self.background_image = ImageTk.PhotoImage(self.image)
 
-def hermie_resize(e):
-    global revived_hermie
-    revived_hermie = Image.open("Hermie_Crawling.png").convert("RGBA")
-    revived_hermie = revived_hermie.resize((e.width, e)
-    label = tk.Label(frame, image=HERMSTER2)
-    label.pack()
+        self.background = tk.Label(self, image = self.background_image)
+        self.background.pack(fill = tk.BOTH, expand=tk.YES)
+        self.background.bind('<Configure>', self.resize_hermie)
 
-window.bind("<Configure>", hermie_resize)
+    def resize_hermie(self, event):
+        new_width_hermster = event.width
+        new_height_hermster = event.height
+        print(event.width, event.height)
+        self.image = self.revived_hermie.resize(new_width_hermster, new_height_hermster)
 
-#always leave at the bottome.height))
+        self.background_image = ImageTk.PhotoImage(self.image)
+        self.background.configure(image = self.background_image)
 
-    HERMSTER2 = ImageTk.PhotoImage(revived_hermie)
-tk.mainloop()
+
+e = Instant_Frame_Probably(window)
+e.pack(fill = tk.BOTH, expand = tk.YES)
+
+window.mainloop()
