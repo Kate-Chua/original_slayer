@@ -25,6 +25,11 @@ class Instant_Frame_Probably(tk.Frame):
         self.background.pack(fill = tk.BOTH, expand=tk.YES)
         self.background.bind('<Configure>', self.resize_hermie)
 
+        screen_width = master.winfo_screenwidth()
+        screen_height = master.winfo_screenheight()
+        print(screen_width)
+        print(screen_height)
+
     def Instant_Crop_Lol(self):
         pass
 
