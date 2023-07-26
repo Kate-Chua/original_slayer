@@ -33,7 +33,14 @@ class Instant_Frame_Probably(tk.Frame):
         print(event.width, event.height)
         rescaled_width = int(new_width_hermster*0.05)
         rescaled_height = int(new_height_hermster*0.10)
-        self.image = self.revived_hermie.resize((rescaled_width, rescaled_height))
+        if event.width >= 960:
+            overall_hermster_size*5
+        elif  480 <= event.width < 960:
+            overall_hermster_size*2
+        elif event.width < 480:
+            pass
+        overall_hermster_size = (rescaled_width, rescaled_height)
+        self.image = self.revived_hermie.resize((overall_hermster_size))
 
         self.background_image = ImageTk.PhotoImage(self.image)
         self.background.configure(image = self.background_image)
