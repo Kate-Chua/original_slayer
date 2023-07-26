@@ -1,8 +1,7 @@
 import tkinter as tk
 from PIL import ImageTk, Image
-
 window = tk.Tk()
-window.title("Unslauy")
+window.title("Hermie Adventures")
 window.geometry("600x600")
 
 class Instant_Frame_Probably(tk.Frame):
@@ -24,11 +23,6 @@ class Instant_Frame_Probably(tk.Frame):
         self.background = tk.Label(self, image = self.background_image)
         self.background.pack(fill = tk.BOTH, expand=tk.YES)
         self.background.bind('<Configure>', self.resize_hermie)
-
-        screen_width = master.winfo_screenwidth()
-        screen_height = master.winfo_screenheight()
-        print(screen_width)
-        print(screen_height)
 
     def Instant_Crop_Lol(self):
         pass
