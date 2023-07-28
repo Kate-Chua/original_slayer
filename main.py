@@ -22,7 +22,12 @@ class Instant_Frame_Probably(tk.Frame):
 
         self.background = tk.Label(self, image = self.background_image)
         self.background.pack(fill = tk.BOTH, expand=tk.YES)
-        self.background.bind('<Configure>', self.resize_hermie)
+        #self.background.bind('<Configure>', self.resize_hermie)
+        overall_hermster_size = (int(32 * 3), int(32 * 3))
+        self.image = self.revived_hermie.resize((overall_hermster_size))
+
+        self.background_image = ImageTk.PhotoImage(self.image)
+        self.background.configure(image=self.background_image)
 
     def Instant_Crop_Lol(self):
         pass
@@ -31,15 +36,8 @@ class Instant_Frame_Probably(tk.Frame):
         new_width_hermster = event.width
         new_height_hermster = event.height
         print(event.width, event.height)
-        rescaled_width = int(new_width_hermster*0.05)
-        rescaled_height = int(new_height_hermster*0.10)
-        if event.width >= 960:
-            overall_hermster_size*5
-        elif  480 <= event.width < 960:
-            overall_hermster_size*2
-        elif event.width < 480:
-            pass
-        overall_hermster_size = (rescaled_width, rescaled_height)
+        if event.width <= 1920:
+            overall_hermster_size = (int(new_width_hermster * 0.05), int(new_height_hermster * 0.10))
         self.image = self.revived_hermie.resize((overall_hermster_size))
 
         self.background_image = ImageTk.PhotoImage(self.image)
