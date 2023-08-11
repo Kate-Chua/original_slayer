@@ -4,6 +4,10 @@ window = tk.Tk()
 window.title("Hermie Adventures")
 window.geometry("600x600")
 
+window_width = 600
+window_height = 600
+
+
 class Instant_Frame_Probably(tk.Frame):
     def __init__(self, master, photo):
         tk.Frame.__init__(self, master)
@@ -22,9 +26,8 @@ class Instant_Frame_Probably(tk.Frame):
 
         self.background = tk.Label(self, image = self.background_image)
         self.background.pack(fill = tk.BOTH, expand=tk.YES)
-        #self.background.bind('<Configure>', self.resize_hermie)
         #window.bind("<Up>", self.jump)
-        overall_hermster_size = (int(32 * 3), int(32 * 3))
+        overall_hermster_size = (int(32 * 4), int(32 * 4))
         self.image = self.revived_hermie.resize((overall_hermster_size))
 
         self.background_image = ImageTk.PhotoImage(self.image)
@@ -34,33 +37,33 @@ class Instant_Frame_Probably(tk.Frame):
         self.y = 0
         self.hermie_canvas = tk.Canvas(window, width=32, height=32)
         self.hermie_canvas.pack()
-        self.moving_hermie = self.hermie_canvas.create_image(self.x, self.y, anchor=tk.NW, image = self.background_image)
+        self.moving_hermie = self.hermie_canvas.create_image(self.x, self.y, anchor=tk.SW, image = self.background_image)
 
     def Instant_Crop_Lol(self):
         pass
 
-    def resize_hermie(self, event):
-        new_width_hermster = event.width
-        new_height_hermster = event.height
-        print(event.width, event.height)
-        if event.width <= 1920:
-            overall_hermster_size = (int(new_width_hermster * 0.05), int(new_height_hermster * 0.10))
-        self.image = self.revived_hermie.resize((overall_hermster_size))
-
-        self.background_image = ImageTk.PhotoImage(self.image)
-        self.background.configure(image = self.background_image)
-
 def jump(event):
+    global window_height
+    global window_width
     global e
+    global window
     #self.y = 20
    # self.hermie_canvas.move(self.moving_hermie, self.x, self.y)
    # self.
   #  print(self.hermie_canvas.move)
-    e.place(y = 80)
+    e.place(x = window.winfo_width()/2 - 100, y = window.winfo_height()/2 - 100)
+    print(window_width, window_height)
+    print(window.winfo_height(), window.winfo_width())
 
+def resize_window(event):
+    global window_width, window_height
+    window_width = event.width
+    window_height = event.height
 
 e = Instant_Frame_Probably(window, "Hermie_Crawling.png")
 e.pack(fill = tk.BOTH, expand = tk.YES)
 window.bind("<Up>", jump)
+window.bind('<Configure>', resize_window)
+
 
 window.mainloop()
