@@ -51,9 +51,15 @@ def jump(event):
    # self.hermie_canvas.move(self.moving_hermie, self.x, self.y)
    # self.
   #  print(self.hermie_canvas.move)
-    e.place(x = window.winfo_width()/2 - 100, y = window.winfo_height()/2 - 100)
-    print(window_width, window_height)
-    print(window.winfo_height(), window.winfo_width())
+    window_height = window.winfo_height()/2
+    '''for i in range(100):
+     time.sleep(0.05)
+     e.place(x = window.winfo_width()/2 - 100, y = window_height - i)
+     print(window_height - i)'''
+    if window_height > 200:
+        window_height -= 10
+        e.place(x = window.winfo_width()/2, y = window_height)
+        window.after(12,jump)
 
 def resize_window(event):
     global window_width, window_height
